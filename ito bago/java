@@ -1,0 +1,160 @@
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class CriminalBackgroundActivity extends AppCompatActivity {
+
+    private CheckBox checkBoxAdminOffenseYes;
+    private CheckBox checkBoxAdminOffenseNo;
+    private EditText editTextAdminOffenseDetails;
+
+    private CheckBox checkBoxCriminallyChargedYes;
+    private CheckBox checkBoxCriminallyChargedNo;
+    private EditText editTextCriminallyChargedDetails;
+
+    private CheckBox checkBoxConvictedOfCrimeYes;
+    private CheckBox checkBoxConvictedOfCrimeNo;
+    private EditText editTextConvictedOfCrimeDetails;
+
+    private CheckBox checkBoxIndigenousGroupYes;
+    private CheckBox checkBoxIndigenousGroupNo;
+    private EditText editTextIndigenousGroupDetails;
+
+    private CheckBox checkBoxDisabilityGroupYes;
+    private CheckBox checkBoxDisabilityGroupNo;
+    private EditText editTextDisabilityGroupDetails;
+
+    private CheckBox checkBoxSoloParentYes;
+    private CheckBox checkBoxSoloParentNo;
+    private EditText editTextSoloParentDetails;
+
+    private Button submitButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_criminal_background);
+
+        checkBoxAdminOffenseYes = findViewById(R.id.checkBoxAdminOffenseYes);
+        checkBoxAdminOffenseNo = findViewById(R.id.checkBoxAdminOffenseNo);
+        editTextAdminOffenseDetails = findViewById(R.id.editTextAdminOffenseDetails);
+
+        checkBoxCriminallyChargedYes = findViewById(R.id.checkBoxCriminallyChargedYes);
+        checkBoxCriminallyChargedNo = findViewById(R.id.checkBoxCriminallyChargedNo);
+        editTextCriminallyChargedDetails = findViewById(R.id.editTextCriminallyChargedDetails);
+
+        checkBoxConvictedOfCrimeYes = findViewById(R.id.checkBoxConvictedOfCrimeYes);
+        checkBoxConvictedOfCrimeNo = findViewById(R.id.checkBoxConvictedOfCrimeNo);
+        editTextConvictedOfCrimeDetails = findViewById(R.id.editTextConvictedOfCrimeDetails);
+
+        checkBoxIndigenousGroupYes = findViewById(R.id.checkBoxIndigenousGroupYes);
+        checkBoxIndigenousGroupNo = findViewById(R.id.checkBoxIndigenousGroupNo);
+        editTextIndigenousGroupDetails = findViewById(R.id.editTextIndigenousGroupDetails);
+
+        checkBoxDisabilityGroupYes = findViewById(R.id.checkBoxDisabilityGroupYes);
+        checkBoxDisabilityGroupNo = findViewById(R.id.checkBoxDisabilityGroupNo);
+        editTextDisabilityGroupDetails = findViewById(R.id.editTextDisabilityGroupDetails);
+
+        checkBoxSoloParentYes = findViewById(R.id.checkBoxSoloParentYes);
+        checkBoxSoloParentNo = findViewById(R.id.checkBoxSoloParentNo);
+        editTextSoloParentDetails = findViewById(R.id.editTextSoloParentDetails);
+
+        submitButton = findViewById(R.id.submitButton);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitForm();
+            }
+        });
+
+        // Enable/disable details EditText based on checkbox state
+        checkBoxAdminOffenseYes.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            editTextAdminOffenseDetails.setEnabled(isChecked);
+            if (!isChecked) {
+                editTextAdminOffenseDetails.setText("");
+            }
+        });
+
+        checkBoxCriminallyChargedYes.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            editTextCriminallyChargedDetails.setEnabled(isChecked);
+            if (!isChecked) {
+                editTextCriminallyChargedDetails.setText("");
+            }
+        });
+
+        checkBoxConvictedOfCrimeYes.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            editTextConvictedOfCrimeDetails.setEnabled(isChecked);
+            if (!isChecked) {
+                editTextConvictedOfCrimeDetails.setText("");
+            }
+        });
+
+        checkBoxIndigenousGroupYes.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            editTextIndigenousGroupDetails.setEnabled(isChecked);
+            if (!isChecked) {
+                editTextIndigenousGroupDetails.setText("");
+            }
+        });
+
+        checkBoxDisabilityGroupYes.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            editTextDisabilityGroupDetails.setEnabled(isChecked);
+            if (!isChecked) {
+                editTextDisabilityGroupDetails.setText("");
+            }
+        });
+
+        checkBoxSoloParentYes.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            editTextSoloParentDetails.setEnabled(isChecked);
+            if (!isChecked) {
+                editTextSoloParentDetails.setText("");
+            }
+        });
+    }
+
+    private void submitForm() {
+        // Retrieve the selected checkbox values and details
+        boolean adminOffenseChecked = checkBoxAdminOffenseYes.isChecked();
+        boolean criminallyChargedChecked = checkBoxCriminallyChargedYes.isChecked();
+        boolean convictedOfCrimeChecked = checkBoxConvictedOfCrimeYes.isChecked();
+        boolean indigenousGroupChecked = checkBoxIndigenousGroupYes.isChecked();
+        boolean disabilityGroupChecked = checkBoxDisabilityGroupYes.isChecked();
+        boolean soloParentChecked = checkBoxSoloParentYes.isChecked();
+
+        String adminOffenseDetails = editTextAdminOffenseDetails.getText().toString().trim();
+        String criminallyChargedDetails = editTextCriminallyChargedDetails.getText().toString().trim();
+        String convictedOfCrimeDetails = editTextConvictedOfCrimeDetails.getText().toString().trim();
+        String indigenousGroupDetails = editTextIndigenousGroupDetails.getText().toString().trim();
+        String disabilityGroupDetails = editTextDisabilityGroupDetails.getText().toString().trim();
+        String soloParentDetails = editTextSoloParentDetails.getText().toString().trim();
+
+        // Perform validation if necessary
+
+        // Display the form data
+        String formData = "1. Have you ever been found guilty of any administrative offense?\n" +
+                "Yes: " + adminOffenseChecked + "\n" +
+                "Details: " + adminOffenseDetails + "\n\n" +
+                "2. Have you been criminally charged before any court?\n" +
+                "Yes: " + criminallyChargedChecked + "\n" +
+                "Details: " + criminallyChargedDetails + "\n\n" +
+                "3. Have you ever been convicted of any crime or violation of any law, decree, ordinance or regulation by any court or tribunal?\n" +
+                "Yes: " + convictedOfCrimeChecked + "\n" +
+                "Details: " + convictedOfCrimeDetails + "\n\n" +
+                "4. Pursuant to:\n" +
+                "(a) Indigenous People's Act (RA 8371):\n" +
+                "Member of indigenous group: " + indigenousGroupChecked + "\n" +
+                "Details: " + indigenousGroupDetails + "\n" +
+                "(b) Magna Carta for Disabled Persons (RA 7277):\n" +
+                "Person with disability: " + disabilityGroupChecked + "\n" +
+                "Details: " + disabilityGroupDetails + "\n" +
+                "(c) Solo Parents Welfare Act of 2000 (RA 8972):\n" +
+                "Solo parent: " + soloParentChecked + "\n" +
+                "Details: " + soloParentDetails;
+
+        Toast.makeText(this, formData, Toast.LENGTH_LONG).show();
+    }
+}
